@@ -1,7 +1,10 @@
 @(persons: List[Person], peopleForm: Form[Person])
 
 @import helper._
-@import helper.twitterBootstrap._
+@import helper.FieldConstructor 
+@import helper.twitterBootstrap2._ 
+
+@implicitFieldConstructor = @{FieldConstructor(twitterBootstrapFieldConstructor.f)}
 
 @main("Welcome to Play 2.0") {
     
@@ -18,12 +21,14 @@
 
     <h2>Add a person</h2>
 
-    @form(routes.Application.newPerson) {
-    	@inputText(peopleForm("username"))
-    	@inputText(peopleForm("password"))
-    	@inputText(peopleForm("confirm"))
-    	@inputText(peopleForm("realName"))
-    	<input type="submit" value="Create">
+    @helper.form(routes.Application.newPerson, 'class -> "well form-horizontal", 'id -> "FISK") {
+    	@helper.inputText(peopleForm("username"), '_label -> "username")
+    	@helper.inputText(peopleForm("password"), 'class -> "")
+    	@helper.inputText(peopleForm("confirm"))
+    	@helper.inputText(peopleForm("realName"))
+        <div class="controls">
+        	<input type="submit" value="Create" class="btn btn-primary">
+       </div>
     }
-	
+
 }
