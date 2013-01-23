@@ -1,5 +1,7 @@
 @(persons: List[Person], peopleForm: Form[String])
 
+@import helper._
+
 @main("Welcome to Play 2.0") {
     
     <h1>@persons.size people</h1>
@@ -8,7 +10,7 @@
     <ul>
     	@persons.map { person =>
     		<li>
-    			@person.name
+    			@person.realName
     		</li>
     	}	
     </ul>
