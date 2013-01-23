@@ -25,7 +25,7 @@ val personForm = Form(
     Ok(views.html.index(Persons.all, personForm ))
   }
   
-  def newPerson() = Action { implicit request =>
+  def newPerson = Action { implicit request =>
     personForm.bindFromRequest.fold(
     errors => BadRequest(views.html.index(Persons.all, errors)),
     person => {

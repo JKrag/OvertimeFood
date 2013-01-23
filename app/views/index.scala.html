@@ -18,7 +18,10 @@
     <h2>Add a person</h2>
 
     @form(routes.Application.newPerson) {
-    	@inputText(peopleForm("name"))
+    	@inputText(peopleForm("username"))
+    	@inputText(peopleForm("password"))
+    	@inputText(peopleForm("confirm"))
+    	@inputText(peopleForm("realName"))
     	<input type="submit" value="Create">
     }
 	
