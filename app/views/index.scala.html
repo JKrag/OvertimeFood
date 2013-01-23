@@ -10,7 +10,7 @@
     
     <h1>@persons.size people</h1>
 
-
+    <p>
     <ul>
     	@persons.map { person =>
     		<li>
@@ -18,7 +18,8 @@
     		</li>
     	}	
     </ul>
-
+    </p>
+    
     <h2>Add a person</h2>
 
     @helper.form(routes.Application.newPerson, 'class -> "well form-horizontal", 'id -> "FISK") {
