@@ -23,11 +23,12 @@
     <h2>Add a dinner</h2>
 
     @helper.form(routes.Application.newDinner, 'class -> "well form-horizontal", 'id -> "FISK") {
-    	@helper.inputText(peopleForm("dinner_time"))
-        @helper.inputText(peopleForm("order_latest_time"))
-        @helper.inputText(peopleForm("name"))
-    	@helper.inputText(peopleForm("description"))
-    	@helper.inputText(peopleForm("order_link"))
+    	@helper.inputText(peopleForm("dinner_time"), '_label -> "Dinner time")
+        @helper.inputText(peopleForm("order_latest_time"), '_label -> "Latest order time")
+        @helper.inputText(peopleForm("name"), '_label -> "Name")
+    	@helper.inputText(peopleForm("description"), '_label -> "Description")
+    	@helper.inputText(peopleForm("order_link"), '_label -> "Order link")
+        @helper.checkbox(peopleForm("open"), '_label -> "Open for orders", '_help -> "")
         <div class="controls">
         	<input type="submit" value="Create" class="btn btn-primary">
        </div>

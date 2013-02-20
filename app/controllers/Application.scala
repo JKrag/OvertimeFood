@@ -11,16 +11,15 @@ import com.mongodb.casbah.Imports._
 object Application extends Controller {
 
 val dinnerForm = Form(
-  mapping(
-    //"id" -> ignored(new ObjectId),
+  mapping( 
     "dinner_time" -> date("dd-MM-yy HH:mm"),
     "order_latest_time" -> date("dd-MM-yy HH:mm"),
     "name" -> nonEmptyText,
     "description" -> text,
-    "order_link" -> text
-  )//(Dinner.apply)(Dinner.unapply)
-  ((dinner_time, order_latest_time, name, description, order_link) => Dinner(new ObjectId, dinner_time, order_latest_time, name, description, order_link))
-  ((dinner:Dinner) => Some((dinner.dinner_time, dinner.order_latest_time, dinner.name, dinner.description, dinner.order_link)))
+    "order_link" -> text,
+    "open" -> checked("Is open")
+  )((dinner_time, order_latest_time, name, description, order_link, open) => Dinner(new ObjectId, dinner_time, order_latest_time, name, description, order_link, open))
+  ((dinner:Dinner) => Some((dinner.dinner_time, dinner.order_latest_time, dinner.name, dinner.description, dinner.order_link, dinner.open)))
 )
   
   def index = Action {

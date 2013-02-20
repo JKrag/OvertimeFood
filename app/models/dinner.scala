@@ -11,7 +11,8 @@ case class Dinner(
   order_latest_time:  Date,
   name: String,
   description: String,
-  order_link: String
+  order_link: String,
+  open: Boolean
 )
 
 object Dinners {
