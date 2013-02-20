@@ -9,14 +9,12 @@ object ApplicationBuild extends Build {
 
 	val appDependencies = Seq(
 	  "com.github.twitter" %  "bootstrap"  % "2.0.2",
-	  "com.mongodb.casbah" %% "casbah" % "2.1.5-1",
-	  "com.novus" %% "salat-core" % "0.0.8-SNAPSHOT"
+	  "com.novus" %% "salat" % "1.9.2-SNAPSHOT"
 	)
     val main = PlayProject(appName, appVersion, appDependencies, mainLang = SCALA).settings(
        resolvers ++= Seq(
        	"webjars" at "http://webjars.github.com/m2",
-       	"repo.novus snaps" at "http://repo.novus.com/snapshots/",
-      	"casbah" at "https://oss.sonatype.org/content/groups/scala-tools/")
+       	"Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots")
     )
 
 }

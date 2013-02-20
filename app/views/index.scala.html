@@ -1,4 +1,4 @@
-@(persons: List[Person], peopleForm: Form[Person])
+@(dinners: List[Dinner], peopleForm: Form[Dinner])
 
 @import helper._
 @import helper.FieldConstructor 
@@ -6,27 +6,28 @@
 
 @implicitFieldConstructor = @{FieldConstructor(twitterBootstrapFieldConstructor.f)}
 
-@main("Welcome to Play 2.0") {
+@main("Feed Me!") {
     
-    <h1>@persons.size people</h1>
+    <h1>@dinners.size dinners</h1>
 
     <p>
     <ul>
-    	@persons.map { person =>
+    	@dinners.map { person =>
     		<li>
-    			@person.realName
+    			@person.name
     		</li>
     	}	
     </ul>
     </p>
     
-    <h2>Add a person</h2>
+    <h2>Add a dinner</h2>
 
-    @helper.form(routes.Application.newPerson, 'class -> "well form-horizontal", 'id -> "FISK") {
-    	@helper.inputText(peopleForm("username"), '_label -> "username")
-    	@helper.inputText(peopleForm("password"), 'class -> "")
-    	@helper.inputText(peopleForm("confirm"))
-    	@helper.inputText(peopleForm("realName"))
+    @helper.form(routes.Application.newDinner, 'class -> "well form-horizontal", 'id -> "FISK") {
+    	@helper.inputText(peopleForm("dinner_time"))
+        @helper.inputText(peopleForm("order_latest_time"))
+        @helper.inputText(peopleForm("name"))
+    	@helper.inputText(peopleForm("description"))
+    	@helper.inputText(peopleForm("order_link"))
         <div class="controls">
         	<input type="submit" value="Create" class="btn btn-primary">
        </div>
