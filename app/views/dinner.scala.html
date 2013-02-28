@@ -1,0 +1,25 @@
+@(peopleForm: Form[Dinner])
+
+@import helper._
+@import helper.FieldConstructor 
+@import helper.twitterBootstrap2._ 
+
+@implicitFieldConstructor = @{FieldConstructor(twitterBootstrapFieldConstructor.f)}
+
+@main("Feed Me!") {
+    
+    <h1>Add new dinner</h1>
+
+    @helper.form(routes.Application.addDinner, 'class -> "well form-horizontal", 'id -> "FISK") {
+    	@helper.inputText(peopleForm("dinner_time"), '_label -> "Dinner time")
+        @helper.inputText(peopleForm("order_latest_time"), '_label -> "Latest order time")
+        @helper.inputText(peopleForm("name"), '_label -> "Name")
+    	@helper.inputText(peopleForm("description"), '_label -> "Description")
+    	@helper.inputText(peopleForm("order_link"), '_label -> "Order link")
+        @helper.checkbox(peopleForm("open"), '_label -> "Open for orders", '_help -> "")
+        <div class="controls">
+        	<input type="submit" value="Create" class="btn btn-primary">
+       </div>
+    }
+
+}
