@@ -23,12 +23,16 @@ val dinnerForm = Form(
 )
   
   def index = Action {
-    Ok(views.html.index(Dinners.all, dinnerForm ))
+    Ok(views.html.index(Dinners.all))
+  }
+
+  def newDinner() = Action { 
+    Ok(views.html.dinner(dinnerForm))  
   }
   
-  def newDinner = Action { implicit request =>
+  def addDinner = Action { implicit request =>
     dinnerForm.bindFromRequest.fold(
-    errors => BadRequest(views.html.index(Dinners.all, errors)),
+    errors => BadRequest(views.html.dinner(errors)),
     person => {
       Dinners.create(person)
       Redirect(routes.Application.index)

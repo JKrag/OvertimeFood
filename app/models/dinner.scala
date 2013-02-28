@@ -1,8 +1,13 @@
 package models
+import play.api.Play.current
 import com.mongodb.casbah.Imports._
 import com.novus.salat._
 import com.novus.salat.global._
 import com.novus.salat.annotations._
+import com.novus.salat.dao._
+import com.mongodb.casbah.Imports._
+import se.radley.plugin.salat._
+import mongoContext._
 import java.util.Date
 
 case class Dinner(
@@ -15,7 +20,8 @@ case class Dinner(
   open: Boolean
 )
 
-object Dinners {
+object Dinners extends ModelCompanion[Dinner, ObjectId] {
+  val dao = new SalatDAO[Dinner, ObjectId](collection = mongoCollection("dinners")) {}
   val Dinners = MongoConnection()("food")("Dinners")
   def all = Dinners.map(grater[Dinner].asObject(_)).toList
   def create(Dinner: Dinner) {
