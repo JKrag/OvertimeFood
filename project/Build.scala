@@ -15,7 +15,10 @@ object ApplicationBuild extends Build {
     val main = play.Project(appName, appVersion, appDependencies).settings(
       routesImport += "se.radley.plugin.salat.Binders._",
       templatesImport += "org.bson.types.ObjectId",
-      resolvers += Resolver.sonatypeRepo("snapshots")
+      resolvers ++= Seq(
+        "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots",
+        "webjars"          at "http://webjars.github.com/m2"
+      )
     )
 
 }
