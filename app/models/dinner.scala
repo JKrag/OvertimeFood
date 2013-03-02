@@ -16,7 +16,8 @@ case class Dinner(
   order_latest_time:  Date,
   name: String,
   description: String,
-  order_link: String,
+  restaurant_name: String,
+  restaurant_link: String,
   open: Boolean
 )
 

@@ -3,22 +3,36 @@
 @import helper._
 @import helper.FieldConstructor 
 @import helper.twitterBootstrap2._ 
+@import java.util.Date
 
 @implicitFieldConstructor = @{FieldConstructor(twitterBootstrapFieldConstructor.f)}
 
 @main("Feed Me!") {
     
-    <h1>@dinners.size dinners</h1>
-
-    <p>
-    <ul>
-    	@dinners.map { person =>
-    		<li>
-    			@person.name
-    		</li>
-    	}	
-    </ul>
-    </p>
-
-    <a href="@routes.Application.newDinner">New dinner</a>
+    @if(dinners.size > 0) {
+    	@dinners.map { dinner =>
+    		<div class="well">
+                @if(dinner.dinner_time.getDate() == new Date().getDate()){
+                    <h3>@dinner.name kl @dinner.dinner_time.format("HH:mm")</h3>
+                    <p>@dinner.description</p>
+                    <p>Bestil inden @dinner.order_latest_time.format("HH:mm") fra <a target="_blank" href="@dinner.restaurant_link">@dinner.restaurant_name</a></p>
+                } else {
+                    <h3>@dinner.name kl @dinner.dinner_time.format("dd/MM-yyyy HH:mm")</h3>
+                    <p>@dinner.description</p>
+                    <p>Bestil inden @dinner.order_latest_time.format("dd/MM-yyyy HH:mm") fra <a target="_blank" href="@dinner.restaurant_link">@dinner.restaurant_name</a></p>
+                }
+    			
+    		</div>
+    	}
+        <a class="btn btn-primary" href="@routes.Application.newDinner">Ny bestilling</a>	
+    } else {
+        <div class="hero-unit">
+            <h1>Ingen bestillinger</h1>
+            <p>Der er pt ingen bestillinger åbne. Er du sulten så opret en nu!</p>
+            <a class="btn btn-primary btn-large" href="@routes.Application.newDinner">
+                Ny bestilling
+            </a>
+        </div>
+    }
+    
 }

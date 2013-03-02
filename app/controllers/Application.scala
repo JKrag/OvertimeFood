@@ -16,10 +16,11 @@ val dinnerForm = Form(
     "order_latest_time" -> date("dd-MM-yy HH:mm"),
     "name" -> nonEmptyText,
     "description" -> text,
-    "order_link" -> text,
+    "restaurant_name" -> text,
+    "restaurant_link" -> text,
     "open" -> checked("Is open")
-  )((dinner_time, order_latest_time, name, description, order_link, open) => Dinner(new ObjectId, dinner_time, order_latest_time, name, description, order_link, open))
-  ((dinner:Dinner) => Some((dinner.dinner_time, dinner.order_latest_time, dinner.name, dinner.description, dinner.order_link, dinner.open)))
+  )((dinner_time, order_latest_time, name, description, restaurant_name, restaurant_link, open) => Dinner(new ObjectId, dinner_time, order_latest_time, name, description, restaurant_name, restaurant_link, open))
+  ((dinner:Dinner) => Some((dinner.dinner_time, dinner.order_latest_time, dinner.name, dinner.description, dinner.restaurant_name, dinner.restaurant_link, dinner.open)))
 )
   
   def index = Action {
