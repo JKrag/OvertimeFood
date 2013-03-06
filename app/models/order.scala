@@ -9,7 +9,7 @@ case class Order(
   name: String,
   food_number:  Integer,
   comment: String,
-  dinner: Long
+  dinner: ObjectId
 )
 
 object Orders {

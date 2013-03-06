@@ -1,4 +1,4 @@
-@(dinners: List[Dinner])
+@(dinners: List[Dinner], orders: List[Order])
 
 @import helper._
 @import helper.FieldConstructor 
@@ -21,15 +21,28 @@
                     <p>@dinner.description</p>
                     <p>Bestil inden @dinner.order_latest_time.format("dd/MM-yyyy HH:mm") fra <a target="_blank" href="@dinner.restaurant_link">@dinner.restaurant_name</a></p>
                 }
-    			
+                <table>
+                    <tr>
+                        <th>Navn</th>
+                        <th>Nr</th>
+                        <th>Kommentar</th>
+                    </tr>
+                    @orders.map { order =>
+                        <tr>
+                            <td>@order.name</td>
+                            <td>@order.food_number</td>
+                            <td>@order.comment</td>
+                        </tr>
+                    }
+                </table>	
     		</div>
     	}
-        <a class="btn btn-primary" href="@routes.Application.newDinner">Ny bestilling</a>	
+        <a class="btn btn-primary" href="@routes.DinnerController.newDinner">Ny bestilling</a>	
     } else {
         <div class="hero-unit">
             <h1>Ingen bestillinger</h1>
             <p>Der er pt ingen bestillinger åbne. Er du sulten så opret en nu!</p>
-            <a class="btn btn-primary btn-large" href="@routes.Application.newDinner">
+            <a class="btn btn-primary btn-large" href="@routes.DinnerController.newDinner">
                 Ny bestilling
             </a>
         </div>
