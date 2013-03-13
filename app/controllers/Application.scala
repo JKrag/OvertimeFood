@@ -22,7 +22,20 @@ object Application extends Controller {
   )
 
   def index = Action {
-    Ok(views.html.index(Dinners.all, Orders.all))
+    val dinners = Dinners.all
+    Ok(views.html.index(dinners, dinners map {d => (d.id, Orders.findByDinner(d.id))} toMap, orderForm))
   }
 
+  def addOrder(dinnerId: ObjectId) = Action { implicit request =>
+    orderForm.bindFromRequest.fold(
+      errors => {
+        val dinners = Dinners.all
+        BadRequest(views.html.index(dinners, dinners map {d => (d.id, Orders.findByDinner(d.id))} toMap, errors))
+      },
+      order => {
+          Orders.create(Order(order.id, order.name, order.food_number, order.comment, dinnerId))
+          Redirect(routes.Application.index)
+      }
+      )
+  }
 }
