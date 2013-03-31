@@ -24,4 +24,7 @@ object Orders {
     Orders += grater[Order].asDBObject(Order)
   }
   def findByDinner(dinnerId: ObjectId) = dao.find(MongoDBObject("dinnerId" -> dinnerId)).toList
+    def delete(orderId: ObjectId) {
+    Orders.remove(MongoDBObject("_id" -> orderId))
+  }
 } 

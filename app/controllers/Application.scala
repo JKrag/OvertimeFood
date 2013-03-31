@@ -38,4 +38,9 @@ object Application extends Controller {
       }
       )
   }
+
+  def deleteOrder(orderId: ObjectId) = Action { implicit request =>
+    Orders.delete(orderId)
+    Redirect(routes.Application.index)
+  }
 }

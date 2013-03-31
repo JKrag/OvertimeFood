@@ -7,6 +7,7 @@ GET     /                           controllers.Application.index
 GET		/dinner/new					controllers.DinnerController.newDinner
 GET		/dinner/add					controllers.DinnerController.addDinner
 GET 	/order/add/:dinnerId		controllers.Application.addOrder(dinnerId:ObjectId)
+GET 	/order/delete/:orderId		controllers.Application.deleteOrder(orderId:ObjectId)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

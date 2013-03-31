@@ -4,7 +4,7 @@
 @import helper.twitterBootstrap2._ 
 @import java.util.Date
 
-@implicitFieldConstructor = @{FieldConstructor(twitterBootstrapFieldConstructor.f)}
+@implicitFieldConstructor = @{FieldConstructor(simpleForm.f)}
 
 @main("Feed Me!") {
     
@@ -21,31 +21,46 @@
                     <p>Bestil inden @dinner.order_latest_time.format("dd/MM-yyyy HH:mm") fra <a target="_blank" href="@dinner.restaurant_link">@dinner.restaurant_name</a></p>
                 }
                 
-                @if(!allOrders.get(dinner.id).isEmpty && allOrders.get(dinner.id).get.size > 0){
-                    <table class="table table-bordered table-striped responsive-utilities">
-                        <tr>
-                            <th>Navn</th>
-                            <th>Nr</th>
-                            <th>Kommentar</th>
-                        </tr>
+                @if(dinner.open){
+                    @helper.form(routes.Application.addOrder(dinner.id), 'class -> "form-inline"){
+                        <table class="table table-bordered table-striped responsive-utilities">
+                            <tr>
+                                <th>Navn</th>
+                                <th>Nr</th>
+                                <th>Kommentar</th>
+                                <th></th>
+                            </tr>
 
-                    @allOrders.get(dinner.id).get.map { order =>
-                        <tr>
-                            <td>@order.name</td>
-                            <td>@order.food_number</td>
-                            <td>@order.comment</td>
-                        </tr>
+                        @allOrders.get(dinner.id).get.map { order =>
+                            <tr>
+                                <td>@order.name</td>
+                                <td>@order.food_number</td>
+                                <td>@order.comment</td>
+                                <td><a href='@routes.Application.deleteOrder(order.id)' class='btn btn-danger'>Slet</a></td>
+                            </tr>
+                        }
+                            <tr>
+                                <td>
+                                    @helper.input(orderForm("name"), '_label -> "") { (id, name, value, args) =>
+                                        <input type="text" name="@name" id="@id" @toHtmlArgs(args) placeholder='Dit navn'>
+                                    } 
+                                </td>
+                                <td>
+                                    @helper.input(orderForm("food_number"), '_label -> "", '_help -> "") { (id, name, value, args) =>
+                                        <input type="text" name="@name" id="@id" @toHtmlArgs(args) placeholder='Nr'>
+                                    } 
+                                </td>
+                                <td>
+                                    @helper.input(orderForm("comment"), '_label -> "") { (id, name, value, args) =>
+                                        <input type="text" name="@name" id="@id" @toHtmlArgs(args) placeholder='Kommentar'>
+                                    } 
+                                </td>
+                                <td><input type='submit' value='Bestil' class='btn btn-primary'></td>
+                            </tr>
+                        </table>
                     }
-                    </table>
                 }
-                @helper.form(routes.Application.addOrder(dinner.id), 'class -> "form-inline"){
-                    @helper.inputText(orderForm("name"), '_label -> "Dit navn")
-                    @helper.inputText(orderForm("food_number"), '_label -> "Nr")
-                    @helper.inputText(orderForm("comment"), '_label -> "Kommentar")
-                    <div class="controls">
-                        <input type="submit" value="Bestil" class="btn btn-primary">
-                    </div>
-                }
+                
     		</div>
     	}
         <a class="btn btn-primary" href="@routes.DinnerController.newDinner">Ny bestilling</a>	
