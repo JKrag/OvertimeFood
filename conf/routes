@@ -6,6 +6,7 @@
 GET     /                           controllers.Application.index
 GET		/dinner/new					controllers.DinnerController.newDinner
 GET		/dinner/add					controllers.DinnerController.addDinner
+GET		/dinner/delete/:dinnerId	controllers.DinnerController.deleteDinner(dinnerId:ObjectId)
 GET 	/order/add/:dinnerId		controllers.Application.addOrder(dinnerId:ObjectId)
 GET 	/order/delete/:orderId		controllers.Application.deleteOrder(orderId:ObjectId)
 

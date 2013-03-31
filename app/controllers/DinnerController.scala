@@ -30,7 +30,7 @@ object DinnerController extends Controller {
       		"description" -> text,
       		"restaurant_name" -> text,
       		"restaurant_link" -> text,
-      		"open" -> checked("Is open")
+      		"open" -> boolean
       	)((dinner_time, order_latest_time, name, description, restaurant_name, restaurant_link, open) => Dinner(new ObjectId, dinner_time, order_latest_time, name, description, restaurant_name, restaurant_link, open))
       	((dinner:Dinner) => Some((dinner.dinner_time, dinner.order_latest_time, dinner.name, dinner.description, dinner.restaurant_name, dinner.restaurant_link, dinner.open)))
     	)
@@ -48,4 +48,9 @@ object DinnerController extends Controller {
     	}
   		)
   	}
+
+    def deleteDinner(dinnerId:ObjectId) = Action { implicit request =>
+      Dinners.delete(dinnerId);
+      Redirect(routes.Application.index)
+    }
 }

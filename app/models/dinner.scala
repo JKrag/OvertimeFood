@@ -28,4 +28,7 @@ object Dinners extends ModelCompanion[Dinner, ObjectId] {
   def create(Dinner: Dinner) {
     Dinners += grater[Dinner].asDBObject(Dinner)
   }
+  def delete(dinnerId:ObjectId){
+    Dinners.remove(MongoDBObject("_id" -> dinnerId))
+  }
 } 

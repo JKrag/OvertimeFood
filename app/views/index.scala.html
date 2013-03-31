@@ -11,6 +11,7 @@
     @if(dinners.size > 0) {
     	@dinners.map { dinner =>
     		<div class="well">
+                <a href="@routes.DinnerController.deleteDinner(dinner.id)">Slet</a>
                 @if(dinner.dinner_time.getDate() == new Date().getDate()){
                     <h3>@dinner.name kl @dinner.dinner_time.format("HH:mm")</h3>
                     <p>@dinner.description</p>
