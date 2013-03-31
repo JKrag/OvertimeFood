@@ -1,0 +1,61 @@
+@(dinner:Dinner, orders:List[Order], orderForm: Form[Order])
+
+@import helper._
+@import helper.twitterBootstrap2._ 
+@import java.util.Date
+
+@implicitFieldConstructor = @{FieldConstructor(simpleForm.f)}
+
+<div class="well">
+    <a href="@routes.DinnerController.deleteDinner(dinner.id)">Slet</a>
+    @if(dinner.dinner_time.getDate() == new Date().getDate()){
+        <h3>@dinner.name kl @dinner.dinner_time.format("HH:mm")</h3>
+        <p>@dinner.description</p>
+        <p>@dinner.id Bestil inden @dinner.order_latest_time.format("HH:mm") fra <a target="_blank" href="@dinner.restaurant_link">@dinner.restaurant_name</a></p>
+    } else {
+        <h3>@dinner.name @dinner.dinner_time.format("dd/MM-yyyy HH:mm")</h3>
+        <p>@dinner.description</p>
+        <p>Bestil inden @dinner.order_latest_time.format("dd/MM-yyyy HH:mm") fra <a target="_blank" href="@dinner.restaurant_link">@dinner.restaurant_name</a></p>
+    }
+    
+    @if(dinner.open){
+        @helper.form(routes.Application.addOrder(dinner.id), 'class -> "form-inline"){
+            <table class="table table-bordered table-striped responsive-utilities">
+                <tr>
+                    <th>Navn</th>
+                    <th>Nr</th>
+                    <th>Kommentar</th>
+                    <th></th>
+                </tr>
+
+            @orders.map { order =>
+                <tr>
+                    <td>@order.name</td>
+                    <td>@order.food_number</td>
+                    <td>@order.comment</td>
+                    <td><a href='@routes.Application.deleteOrder(order.id)' class='btn btn-danger'>Slet</a></td>
+                </tr>
+            }
+                <tr>
+                    <td>
+                        @helper.input(orderForm("name"), '_label -> "") { (id, name, value, args) =>
+                            <input type="text" name="@name" id="@id" @toHtmlArgs(args) placeholder='Dit navn'>
+                        } 
+                    </td>
+                    <td>
+                        @helper.input(orderForm("food_number"), '_label -> "", '_help -> "") { (id, name, value, args) =>
+                            <input type="text" name="@name" id="@id" @toHtmlArgs(args) placeholder='Nr'>
+                        } 
+                    </td>
+                    <td>
+                        @helper.input(orderForm("comment"), '_label -> "") { (id, name, value, args) =>
+                            <input type="text" name="@name" id="@id" @toHtmlArgs(args) placeholder='Kommentar'>
+                        } 
+                    </td>
+                    <td><input type='submit' value='Bestil' class='btn btn-primary'></td>
+                </tr>
+            </table>
+        }
+    }
+    
+</div>

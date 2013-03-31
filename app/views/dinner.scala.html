@@ -10,7 +10,7 @@
     
     <h1>Add new dinner</h1>
 
-    @helper.form(routes.Application.addDinner, 'class -> "well form-horizontal", 'id -> "FISK") {
+    @helper.form(routes.DinnerController.addDinner, 'class -> "well form-horizontal", 'id -> "FISK") {
     	@helper.inputText(peopleForm("dinner_time"), '_label -> "Spise tidspunkt")
         @helper.inputText(peopleForm("order_latest_time"), '_label -> "Seneste bestilling")
         @helper.inputText(peopleForm("name"), '_label -> "Navn")

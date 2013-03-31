@@ -3,11 +3,11 @@ import play.api.Play.current
 import com.mongodb.casbah.Imports._
 import com.novus.salat._
 import com.novus.salat.global._
+import mongoContext._
 import com.novus.salat.annotations._
 import com.novus.salat.dao._
 import com.mongodb.casbah.Imports._
 import se.radley.plugin.salat._
-import mongoContext._
 import java.util.Date
 
 case class Dinner(
@@ -27,5 +27,8 @@ object Dinners extends ModelCompanion[Dinner, ObjectId] {
   def all = Dinners.map(grater[Dinner].asObject(_)).toList
   def create(Dinner: Dinner) {
     Dinners += grater[Dinner].asDBObject(Dinner)
+  }
+  def delete(dinnerId:ObjectId){
+    Dinners.remove(MongoDBObject("_id" -> dinnerId))
   }
 } 
