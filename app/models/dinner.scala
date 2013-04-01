@@ -31,4 +31,7 @@ object Dinners extends ModelCompanion[Dinner, ObjectId] {
   def delete(dinnerId:ObjectId){
     Dinners.remove(MongoDBObject("_id" -> dinnerId))
   }
+  def update(dinner:Dinner){
+    
+  }
 } 

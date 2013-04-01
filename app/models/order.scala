@@ -9,7 +9,7 @@ import com.novus.salat.annotations._
 case class Order(
   @Key("_id") id: ObjectId = new ObjectId,
   name: String,
-  food_number:  Integer,
+  food_name:  String,
   comment: String,
   dinnerId: ObjectId
 )

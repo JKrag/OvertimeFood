@@ -7,11 +7,13 @@
 @implicitFieldConstructor = @{FieldConstructor(simpleForm.f)}
 
 <div class="well">
-    <a href="@routes.DinnerController.deleteDinner(dinner.id)">Slet</a>
+    <div class="dinnericons">
+    	<a href="@routes.DinnerController.deleteDinner(dinner.id)"><i class="icon-remove"></i></a>
+    </div>
     @if(dinner.dinner_time.getDate() == new Date().getDate()){
         <h3>@dinner.name kl @dinner.dinner_time.format("HH:mm")</h3>
         <p>@dinner.description</p>
-        <p>@dinner.id Bestil inden @dinner.order_latest_time.format("HH:mm") fra <a target="_blank" href="@dinner.restaurant_link">@dinner.restaurant_name</a></p>
+        <p>Bestil inden @dinner.order_latest_time.format("HH:mm") fra <a target="_blank" href="@dinner.restaurant_link">@dinner.restaurant_name</a></p>
     } else {
         <h3>@dinner.name @dinner.dinner_time.format("dd/MM-yyyy HH:mm")</h3>
         <p>@dinner.description</p>
@@ -23,7 +25,7 @@
             <table class="table table-bordered table-striped responsive-utilities">
                 <tr>
                     <th>Navn</th>
-                    <th>Nr</th>
+                    <th>Navn/Nr</th>
                     <th>Kommentar</th>
                     <th></th>
                 </tr>
@@ -31,20 +33,20 @@
             @orders.map { order =>
                 <tr>
                     <td>@order.name</td>
-                    <td>@order.food_number</td>
+                    <td>@order.food_name</td>
                     <td>@order.comment</td>
-                    <td><a href='@routes.Application.deleteOrder(order.id)' class='btn btn-danger'>Slet</a></td>
+                    <td><a href='@routes.Application.deleteOrder(order.id)'><i class="icon-remove"></a></td>
                 </tr>
             }
                 <tr>
                     <td>
                         @helper.input(orderForm("name"), '_label -> "") { (id, name, value, args) =>
-                            <input type="text" name="@name" id="@id" @toHtmlArgs(args) placeholder='Dit navn'>
+                            <input type="text" name="@name" id="@id" @toHtmlArgs(args) placeholder='Dit navn' autofocus="autofocus">
                         } 
                     </td>
                     <td>
-                        @helper.input(orderForm("food_number"), '_label -> "", '_help -> "") { (id, name, value, args) =>
-                            <input type="text" name="@name" id="@id" @toHtmlArgs(args) placeholder='Nr'>
+                        @helper.input(orderForm("food_name"), '_label -> "", '_help -> "") { (id, name, value, args) =>
+                            <input type="text" name="@name" id="@id" @toHtmlArgs(args) placeholder='Navn/Nr'>
                         } 
                     </td>
                     <td>
