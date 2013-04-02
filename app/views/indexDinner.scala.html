@@ -25,7 +25,7 @@
             <table class="table table-bordered table-striped responsive-utilities">
                 <tr>
                     <th>Navn</th>
-                    <th>Navn/Nr</th>
+                    <th>Mad navn/nr</th>
                     <th>Kommentar</th>
                     <th></th>
                 </tr>
@@ -46,7 +46,7 @@
                     </td>
                     <td>
                         @helper.input(orderForm("food_name"), '_label -> "", '_help -> "") { (id, name, value, args) =>
-                            <input type="text" name="@name" id="@id" @toHtmlArgs(args) placeholder='Navn/Nr'>
+                            <input type="text" name="@name" id="@id" @toHtmlArgs(args) placeholder='Mad navn/nr'>
                         } 
                     </td>
                     <td>
