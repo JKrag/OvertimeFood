@@ -7,23 +7,12 @@ import play.api.data._
 import models.Dinners
 import models.Dinner
 import com.mongodb.casbah.Imports._
-/** Uncomment the following lines as needed **/
-/**
-import play.api.Play.current
-import play.api.libs._
-import play.api.libs.iteratee._
-import play.api.libs.concurrent._
-import java.util.concurrent._
-import scala.concurrent.stm._
-import akka.util.duration._
-import play.api.cache._
-import play.api.libs.json._
-**/
 
 object DinnerController extends Controller {
 	
-    val dinnerForm = Form(
+    def dinnerForm(id: ObjectId = new ObjectId) = Form(
     	mapping(
+          "id" -> ignored(id),
     			"dinner_time" -> date("dd-MM-yy HH:mm"),
       		"order_latest_time" -> date("dd-MM-yy HH:mm"),
       		"name" -> nonEmptyText,
@@ -31,26 +20,46 @@ object DinnerController extends Controller {
       		"restaurant_name" -> text,
       		"restaurant_link" -> text,
       		"open" -> boolean
-      	)((dinner_time, order_latest_time, name, description, restaurant_name, restaurant_link, open) => Dinner(new ObjectId, dinner_time, order_latest_time, name, description, restaurant_name, restaurant_link, open))
-      	((dinner:Dinner) => Some((dinner.dinner_time, dinner.order_latest_time, dinner.name, dinner.description, dinner.restaurant_name, dinner.restaurant_link, dinner.open)))
+      	)(Dinner.apply)(Dinner.unapply)
     	)
 
-    	def newDinner() = Action {
-    	Ok(views.html.dinner(dinnerForm))  
+    // show create form
+  	def create = Action {
+    	Ok(views.html.newDinner(dinnerForm()))  
     }
   
-  	def addDinner = Action { implicit request =>
-    	dinnerForm.bindFromRequest.fold(
-    	errors => BadRequest(views.html.dinner(errors)),
-    	dinner => {
-      		Dinners.create(dinner)
-      		Redirect(routes.Application.index)
-    	}
+    // handle submit from create form
+  	def add = Action { implicit request =>
+    	dinnerForm().bindFromRequest.fold(
+      	errors => BadRequest(views.html.newDinner(errors)),
+      	dinner => {
+        		Dinners.insert(dinner)
+        		Redirect(routes.Application.index)
+      	}
   		)
   	}
 
-    def deleteDinner(dinnerId:ObjectId) = Action { implicit request =>
-      Dinners.delete(dinnerId);
+    // handle delete button action
+    def delete(id:ObjectId) = Action { implicit request =>
+      Dinners.remove(MongoDBObject("_id" -> id));
       Redirect(routes.Application.index)
+    }
+
+    // show edit form
+    def edit(id:ObjectId) = Action { implicit request =>
+      Dinners.findOneById(id).map { dinner =>
+        Ok(views.html.editDinner(id,dinnerForm(id).fill(dinner)))
+      }.getOrElse(NotFound)
+    }
+
+    // handle submit from edit form
+    def update(id:ObjectId) = Action { implicit request =>
+      dinnerForm(id).bindFromRequest.fold(
+        errors => BadRequest(views.html.editDinner(id, errors)),
+        dinner => {
+          Dinners.save(dinner.copy(id = id))
+          Redirect(routes.Application.index)
+        }
+      )
     }
 }

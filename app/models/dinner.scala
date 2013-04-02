@@ -22,16 +22,8 @@ case class Dinner(
 )
 
 object Dinners extends ModelCompanion[Dinner, ObjectId] {
-  val dao = new SalatDAO[Dinner, ObjectId](collection = mongoCollection("dinners")) {}
-  val Dinners = MongoConnection()("food")("Dinners")
-  def all = Dinners.map(grater[Dinner].asObject(_)).toList
-  def create(Dinner: Dinner) {
-    Dinners += grater[Dinner].asDBObject(Dinner)
-  }
-  def delete(dinnerId:ObjectId){
-    Dinners.remove(MongoDBObject("_id" -> dinnerId))
-  }
-  def update(dinner:Dinner){
-    
-  }
+  val collection = MongoConnection()("food")("Dinners")
+  val dao = new SalatDAO[Dinner, ObjectId](collection = collection) {}
+
+  def all = collection.map(grater[Dinner].asObject(_)).toList
 } 

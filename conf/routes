@@ -4,9 +4,11 @@
 
 # Home page
 GET     /                           controllers.Application.index
-GET		/dinner/new					controllers.DinnerController.newDinner
-GET		/dinner/add					controllers.DinnerController.addDinner
-GET		/dinner/delete/:dinnerId	controllers.DinnerController.deleteDinner(dinnerId:ObjectId)
+GET		/dinner/new					controllers.DinnerController.add
+GET		/dinner/add					controllers.DinnerController.create
+GET		/dinner/edit/:dinnerId		controllers.DinnerController.edit(dinnerId:ObjectId)
+GET		/dinner/update/:dinnerId		controllers.DinnerController.update(dinnerId:ObjectId)
+GET		/dinner/delete/:dinnerId	controllers.DinnerController.delete(dinnerId:ObjectId)
 GET 	/order/add/:dinnerId		controllers.Application.addOrder(dinnerId:ObjectId)
 GET 	/order/delete/:orderId		controllers.Application.deleteOrder(orderId:ObjectId)
 
