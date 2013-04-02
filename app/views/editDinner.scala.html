@@ -1,4 +1,4 @@
-@(peopleForm: Form[Dinner])
+@(id:ObjectId, peopleForm: Form[Dinner])
 
 @import helper._
 @import helper.FieldConstructor 
@@ -8,9 +8,9 @@
 
 @main("Feed Me!") {
     
-    <h1>Add new dinner</h1>
+    <h1>Rediger bestilling</h1>
 
-    @helper.form(routes.DinnerController.addDinner, 'class -> "well form-horizontal") {
+    @helper.form(routes.DinnerController.update(id), 'class -> "well form-horizontal") {
     	@helper.inputText(peopleForm("dinner_time"), '_label -> "Spise tidspunkt", 'autofocus -> "autofocus")
         @helper.inputText(peopleForm("order_latest_time"), '_label -> "Seneste bestilling")
         @helper.inputText(peopleForm("name"), '_label -> "Navn")
@@ -19,7 +19,7 @@
         @helper.inputText(peopleForm("restaurant_link"), '_label -> "Restaurant link")
         @helper.checkbox(peopleForm("open"), '_label -> "Åben for bestilling", '_help -> "")
         <div class="controls">
-        	<input type="submit" value="Create" class="btn btn-primary">
+        	<input type="submit" value="Save" class="btn btn-primary">
             <a class="btn" href="@routes.Application.index">Annuller</a>
        </div>
     }

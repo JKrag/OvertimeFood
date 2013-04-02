@@ -1,0 +1,27 @@
+@(peopleForm: Form[Dinner])
+
+@import helper._
+@import helper.FieldConstructor 
+@import helper.twitterBootstrap2._ 
+
+@implicitFieldConstructor = @{FieldConstructor(twitterBootstrapFieldConstructor.f)}
+
+@main("Feed Me!") {
+    
+    <h1>Ny bestilling</h1>
+
+    @helper.form(routes.DinnerController.add, 'class -> "well form-horizontal") {
+    	@helper.inputText(peopleForm("dinner_time"), '_label -> "Spise tidspunkt", 'autofocus -> "autofocus")
+        @helper.inputText(peopleForm("order_latest_time"), '_label -> "Seneste bestilling")
+        @helper.inputText(peopleForm("name"), '_label -> "Navn")
+    	@helper.inputText(peopleForm("description"), '_label -> "Beskrivelse")
+    	@helper.inputText(peopleForm("restaurant_name"), '_label -> "Restaurant navn")
+        @helper.inputText(peopleForm("restaurant_link"), '_label -> "Restaurant link")
+        @helper.checkbox(peopleForm("open"), '_label -> "Åben for bestilling", '_help -> "")
+        <div class="controls">
+        	<input type="submit" value="Create" class="btn btn-primary">
+            <a class="btn" href="@routes.Application.index">Annuller</a>
+       </div>
+    }
+
+}

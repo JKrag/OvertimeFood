@@ -8,7 +8,8 @@
 
 <div class="well">
     <div class="dinnericons">
-    	<a href="@routes.DinnerController.deleteDinner(dinner.id)"><i class="icon-remove"></i></a>
+    	<a href="@routes.DinnerController.edit(dinner.id)"><i class="icon-edit"></i></a>
+        <a href="@routes.DinnerController.delete(dinner.id)"><i class="icon-remove"></i></a>
     </div>
     @if(dinner.dinner_time.getDate() == new Date().getDate()){
         <h3>@dinner.name kl @dinner.dinner_time.format("HH:mm")</h3>
