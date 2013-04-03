@@ -4,13 +4,14 @@
 
 # Home page
 GET     /                           controllers.Application.index
+GET		/dinner/show/:id				controllers.DinnerController.show(id:ObjectId)
 GET		/dinner/new					controllers.DinnerController.create
 GET		/dinner/add					controllers.DinnerController.add
-GET		/dinner/edit/:dinnerId		controllers.DinnerController.edit(dinnerId:ObjectId)
-GET		/dinner/update/:dinnerId		controllers.DinnerController.update(dinnerId:ObjectId)
-GET		/dinner/delete/:dinnerId	controllers.DinnerController.delete(dinnerId:ObjectId)
-GET 	/order/add/:dinnerId		controllers.Application.addOrder(dinnerId:ObjectId)
-GET 	/order/delete/:orderId		controllers.Application.deleteOrder(orderId:ObjectId)
+GET		/dinner/edit/:id		controllers.DinnerController.edit(id:ObjectId)
+GET		/dinner/update/:id		controllers.DinnerController.update(id:ObjectId)
+GET		/dinner/delete/:id	controllers.DinnerController.delete(id:ObjectId)
+GET 	/order/add/:id		controllers.DinnerController.addOrder(id:ObjectId)
+GET 	/order/delete/:orderId		controllers.DinnerController.deleteOrder(orderId:ObjectId)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

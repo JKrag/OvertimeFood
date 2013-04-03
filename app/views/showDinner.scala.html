@@ -1,0 +1,57 @@
+@(dinner: Dinner, orders: List[Order], orderForm: Form[Order])
+
+@import java.util.Date
+@import helper._
+@import helper.FieldConstructor 
+@import helper.twitterBootstrap2._ 
+
+@implicitFieldConstructor = @{FieldConstructor(twitterBootstrapFieldConstructor.f)}
+
+@main(dinner.name){
+                
+	<div class="btn-group dinnericons">
+        <a href="@routes.DinnerController.edit(dinner.id)" class="btn" ><i class="icon-edit"></i></a>
+        <a href="@routes.DinnerController.delete(dinner.id)" class="btn"><i class="icon-remove"></i></a>
+    </div>
+    <h1>@dinner.name</h1>
+	    <p>@dinner.description</p>
+    <dl class="dl-horizontal">
+    	<dt>Spisetid</dt>
+    	<dd>@dinner.dinner_time.format("dd/MM-yyyy HH:mm")</dd>
+    	<dt>Bestil inden</dt>
+    	<dd>@dinner.order_latest_time.format("dd/MM-yyyy HH:mm")</dd>
+    	<dt>Restaurant</dt>
+    	<dd><a target="_blank" href="@dinner.restaurant_link">@dinner.restaurant_name</a></dd>
+    </dl>
+
+    <a href="#" class="btn btn-primary btn-large orderbutton">Bestil mad</a>
+
+    @if(dinner.open){
+        
+        <table class="table table-bordered table-striped responsive-utilities">
+            <tr>
+                <th>Navn</th>
+                <th>Mad navn/nr</th>
+                <th>Kommentar</th>
+                <th></th>
+            </tr>
+
+        @orders.map { order =>
+            <tr>
+                <td>@order.name</td>
+                <td>@order.food_name</td>
+                <td>@order.comment</td>
+                <td><a href='@routes.DinnerController.deleteOrder(order.id)'><i class="icon-remove"></a></td>
+            </tr>
+        }
+        </table>
+        
+        @helper.form(routes.DinnerController.addOrder(dinner.id), 'class -> "form-inline"){
+       		@helper.inputText(orderForm("name"), '_label -> "Dit navn", 'autofocus -> "autofocus")
+            @helper.inputText(orderForm("food_name"), '_label -> "Mad navn/nr") 
+            @helper.inputText(orderForm("comment"), '_label -> "Kommentar") 
+            <input type='submit' value='Bestil' class='btn btn-primary'> 
+        }
+    }
+    <a href="@routes.Application.index" class="btn">Back</a>
+}

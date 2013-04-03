@@ -14,7 +14,7 @@ case class Order(
   dinnerId: ObjectId
 )
 
-object Orders {
+object Orders extends ModelCompanion[Order, ObjectId] {
   val Orders = MongoConnection()("food")("Orders")
   val collection = MongoConnection()("food")("Orders")
   val dao = new SalatDAO[Order, ObjectId](collection = collection) {}
