@@ -10,7 +10,6 @@
                 <h3>@dinner.name @dinner.dinner_time.format("dd/MM-yyyy HH:mm")</h3>
                 <p>@dinner.description</p>
                 <p>Bestil inden @dinner.order_latest_time.format("dd/MM-yyyy HH:mm") fra <a target="_blank" href="@dinner.restaurant_link">@dinner.restaurant_name</a></p>
-                
                 <a href="@routes.DinnerController.show(dinner.id)">Vis</a>
             </div>
     	}

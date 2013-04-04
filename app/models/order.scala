@@ -15,16 +15,8 @@ case class Order(
 )
 
 object Orders extends ModelCompanion[Order, ObjectId] {
-  val Orders = MongoConnection()("food")("Orders")
   val collection = MongoConnection()("food")("Orders")
   val dao = new SalatDAO[Order, ObjectId](collection = collection) {}
 
-  def all = Orders.map(grater[Order].asObject(_)).toList
-  def create(Order: Order) {
-    Orders += grater[Order].asDBObject(Order)
-  }
   def findByDinner(dinnerId: ObjectId) = dao.find(MongoDBObject("dinnerId" -> dinnerId)).toList
-    def delete(orderId: ObjectId) {
-    Orders.remove(MongoDBObject("_id" -> orderId))
-  }
 } 

@@ -24,6 +24,5 @@ case class Dinner(
 object Dinners extends ModelCompanion[Dinner, ObjectId] {
   val collection = MongoConnection()("food")("Dinners")
   val dao = new SalatDAO[Dinner, ObjectId](collection = collection) {}
-
   def all = collection.map(grater[Dinner].asObject(_)).toList
 } 

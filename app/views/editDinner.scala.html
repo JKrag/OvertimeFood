@@ -11,17 +11,17 @@
     <h1>Rediger bestilling</h1>
 
     @helper.form(routes.DinnerController.update(id), 'class -> "well form-horizontal") {
-    	@helper.inputText(peopleForm("dinner_time"), '_label -> "Spise tidspunkt", 'autofocus -> "autofocus")
-        @helper.inputText(peopleForm("order_latest_time"), '_label -> "Seneste bestilling")
-        @helper.inputText(peopleForm("name"), '_label -> "Navn")
+    	@helper.inputText(peopleForm("dinner_time"), '_label -> "Spise tidspunkt", 'autofocus -> "autofocus", 'type -> "datetime")
+      @helper.inputText(peopleForm("order_latest_time"), '_label -> "Seneste bestilling", 'type -> "datetime" )
+      @helper.inputText(peopleForm("name"), '_label -> "Navn")
     	@helper.inputText(peopleForm("description"), '_label -> "Beskrivelse")
     	@helper.inputText(peopleForm("restaurant_name"), '_label -> "Restaurant navn")
-        @helper.inputText(peopleForm("restaurant_link"), '_label -> "Restaurant link")
-        @helper.checkbox(peopleForm("open"), '_label -> "Åben for bestilling", '_help -> "")
-        <div class="controls">
-        	<input type="submit" value="Save" class="btn btn-primary">
-            <a class="btn" href="@routes.Application.index">Annuller</a>
-       </div>
+      @helper.inputText(peopleForm("restaurant_link"), '_label -> "Restaurant link")
+      @helper.checkbox(peopleForm("open"), '_label -> "Åben for bestilling", '_help -> "")
+      <div class="controls">
+      	<input type="submit" value="Save" class="btn btn-primary">
+          <a class="btn" href="@routes.Application.index">Annuller</a>
+     </div>
     }
 
 }

@@ -1,0 +1,13 @@
+@(dinner:Dinner, orderForm:Form[Order])
+
+@main("Ny bestilling"){
+	<h1>Ny bestilling</h1>
+
+    @helper.form(routes.OrderController.add(dinner.id), 'class -> "form-inline"){
+   		@helper.inputText(orderForm("name"), '_label -> "Dit navn", 'autofocus -> "autofocus")
+        @helper.inputText(orderForm("food_name"), '_label -> "Mad navn/nr") 
+        @helper.inputText(orderForm("comment"), '_label -> "Kommentar") 
+        <input type='submit' value='Bestil' class='btn btn-primary'> 
+        <a href="@routes.DinnerController.show(dinner.id)" class="btn">Anuller</a>
+    }
+}
