@@ -11,8 +11,10 @@
     <h1>Rediger bestilling</h1>
 
     @helper.form(routes.DinnerController.update(id), 'class -> "well form-horizontal") {
-    	@helper.inputText(peopleForm("dinner_time"), '_label -> "Spise tidspunkt", 'autofocus -> "autofocus", 'type -> "datetime")
-      @helper.inputText(peopleForm("order_latest_time"), '_label -> "Seneste bestilling", 'type -> "datetime" )
+    	@helper.inputText(peopleForm("dinner_date"), '_label -> "Spise dato", 'autofocus -> "autofocus", 'type -> "date")
+      @helper.inputText(peopleForm("dinner_time"), '_label -> "Spise tid", 'type -> "time")
+      @helper.inputText(peopleForm("order_latest_date"), '_label -> "Seneste bestillingsdato", 'type -> "date" )
+      @helper.inputText(peopleForm("order_latest_time"), '_label -> "Seneste bestillingstid", 'type -> "time" )
       @helper.inputText(peopleForm("name"), '_label -> "Navn")
     	@helper.inputText(peopleForm("description"), '_label -> "Beskrivelse")
     	@helper.inputText(peopleForm("restaurant_name"), '_label -> "Restaurant navn")

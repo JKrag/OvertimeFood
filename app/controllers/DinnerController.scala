@@ -14,15 +14,24 @@ object DinnerController extends Controller {
   def dinnerForm(id: ObjectId = new ObjectId) = Form(
   	mapping(
         "id" -> ignored(id),
-  			"dinner_time" -> date("dd-MM-yy HH:mm"),
-    		"order_latest_time" -> date("dd-MM-yy HH:mm"),
+  			"dinner_date" -> date("yyyy-MM-dd"),
+        "dinner_time" -> date("HH:mm"), 
+    		"order_latest_date" -> date("yyyy-MM-dd"),
+        "order_latest_time" -> date("HH:mm"),
     		"name" -> nonEmptyText,
     		"description" -> text,
     		"restaurant_name" -> text,
     		"restaurant_link" -> text,
     		"open" -> boolean
-    	)(Dinner.apply)(Dinner.unapply)
-  	)
+    	)((id, dinner_date, dinner_time, order_latest_date, order_latest_time, name, description, restaurant_name, restaurant_link, open) => {
+          dinner_date.setHours(dinner_time.getHours)
+          dinner_date.setMinutes(dinner_time.getMinutes)
+          order_latest_date.setHours(order_latest_time.getHours)
+          order_latest_date.setMinutes(order_latest_time.getMinutes)
+          Dinner(id, dinner_date, order_latest_date, name, description, restaurant_name, restaurant_link, open)
+        })
+        ((dinner:Dinner) => Some((id, dinner.dinner_time, dinner.dinner_time, dinner.order_latest_time, dinner.order_latest_time, dinner.name, dinner.description, dinner.restaurant_name, dinner.restaurant_link, dinner.open)))
+    )
 
   // show create form
 	def create = Action {
