@@ -4,9 +4,11 @@
 
 @main("Feed Me!") {
     
+    <a class="btn btn-primary new_dinner_button" href="@routes.DinnerController.create"><i class="icon-plus icon-white"></i> Ny bestilling</a>
+    
     @if(dinners.size > 0) {
     	@dinners.map { dinner =>
-    		<div class="well">
+    		<div class="well dinnerbox">
                 <h3>@dinner.name @dinner.dinner_time.format("dd/MM-yyyy HH:mm")</h3>
                 <p>@dinner.description</p>
                 <p>Bestil inden @dinner.order_latest_time.format("dd/MM-yyyy HH:mm") fra <a target="_blank" href="@dinner.restaurant_link">@dinner.restaurant_name</a></p>
@@ -17,6 +19,7 @@
         <div class="hero-unit">
             <h1>Ingen bestillinger</h1>
             <p>Der er pt ingen bestillinger åbne. Er du sulten så opret en nu!</p>
+            <a class="btn btn-primary" href="@routes.DinnerController.create">Ny bestilling</a>
         </div>
     }
     
