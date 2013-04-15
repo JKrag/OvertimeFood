@@ -1,7 +1,8 @@
 @import "utils/_reset.less";
 @import "utils/_layout.less";
 
-@media (min-width: 979px) {
+/* DESKTOP */
+@media (min-width: 980px) {
 	body{
 		padding-top: 60px;
 	}
@@ -14,14 +15,122 @@
 	margin-bottom: 20px;
 	float: right;
 }
-.right {float: right;}
-.left {float: left;}
 .orderbutton {
 	display: block;
-	margin: 0 auto 20px auto;
+	margin: 20px auto 30px auto;
 	max-width: 300px;
 }
 
 .dinnerbox {
 	clear: both;
+}
+
+.page_heading1 {
+	text-align: center;
+	font-size: 4em;
+}
+
+.page_description {
+	text-align: center;
+	font-size: 2em;
+}
+
+.dl-horizontal {
+	width: 440px;
+	margin: 0 auto;
+}
+
+.dl-horizontal dd, .dl-horizontal dt {
+	font-size: 2em;
+	line-height: 2em;
+}
+
+.dl-horizontal dt {
+	width: 200px
+}
+
+.dl-horizontal dd {
+	margin-left: 220px
+}
+
+/* INFOBOX START */
+.infobox {
+	position: relative;
+	font-size: 2em;
+	clear: both;
+	padding: 1em;
+	margin-bottom: 20px;
+	border: 1px solid lightgrey;
+}
+
+.infobox_intro {
+	text-align: center;
+	font-size: 0.8em;
+}
+
+.infobox_heading {
+	font-size: 1.5em;
+	line-height: 1em;
+	margin-bottom: 0.5em;
+	text-align: center;
+}
+
+.infobox_paragraph {
+	font-size: 1em;
+	line-height: 1em;
+	text-align: center;
+}
+
+.infobox_buttons {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+}
+/* INFOBOX END*/
+
+/* PORTRAIT TABLETS */
+@media (min-width: 768px) and (max-width: 979px) {
+	
+}
+/* PHONES TO TABLETS */
+@media (min-width: 480px) and (max-width: 767px) {
+	.orderbutton {
+		max-width: 100%;
+	}
+}
+/* PHONES */
+@media (max-width: 479px) {
+	.infobox {
+		font-size: 1.5em;
+	}
+	.page_heading1 {
+		text-align: center;
+		font-size: 2em;
+	}
+
+	.page_description {
+		text-align: center;
+		font-size: 1.5em;
+	}
+
+	.dl-horizontal {
+		width: 340px;
+		margin: 0 auto;
+	}
+
+	.dl-horizontal dd, .dl-horizontal dt {
+		font-size: 1.5em;
+		line-height: 1.5em;
+	}
+
+	.dl-horizontal dt {
+		width: 150px
+	}
+
+	.dl-horizontal dd {
+		margin-left: 160px
+	}
+	.orderbutton {
+		max-width: 100%;
+	}
 }

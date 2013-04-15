@@ -9,12 +9,8 @@
 
 @main(dinner.name){
                 
-	<div class="btn-group dinnericons">
-        <a href="@routes.DinnerController.edit(dinner.id)" class="btn" ><i class="icon-edit"></i></a>
-        <a href="@routes.DinnerController.delete(dinner.id)" class="btn"><i class="icon-remove"></i></a>
-    </div>
-    <h1>@dinner.name</h1>
-	    <p>@dinner.description</p>
+    <h1 class="page_heading1">@dinner.name</h1>
+	    <p class="page_description">@dinner.description</p>
     <dl class="dl-horizontal">
     	<dt>Spisetid</dt>
     	<dd>@dinner.dinner_time.format("dd/MM-yyyy HH:mm")</dd>
@@ -47,5 +43,5 @@
         }
         </table>
     }
-    <a href="@routes.Application.index" class="btn">Back</a>
+    <a href="@routes.Application.index" class="btn btn-large">Back</a>
 }
