@@ -4,19 +4,26 @@
 
 @main("Feed Me!") {
     
+    <a class="btn btn-primary btn-large new_dinner_button" href="@routes.DinnerController.create"><i class="icon-plus icon-white"></i> Ny bestilling</a>
+
     @if(dinners.size > 0) {
     	@dinners.map { dinner =>
-    		<div class="well">
-                <h3>@dinner.name @dinner.dinner_time.format("dd/MM-yyyy HH:mm")</h3>
-                <p>@dinner.description</p>
-                <p>Bestil inden @dinner.order_latest_time.format("dd/MM-yyyy HH:mm") fra <a target="_blank" href="@dinner.restaurant_link">@dinner.restaurant_name</a></p>
-                <a href="@routes.DinnerController.show(dinner.id)">Vis</a>
+    		<div class="infobox">
+                <div class="infobox_buttons btn-group">
+                    <a href="@routes.DinnerController.edit(dinner.id)" class="btn" ><i class="icon-edit"></i></a>
+                    <a href="@routes.DinnerController.delete(dinner.id)" class="btn"><i class="icon-remove"></i></a>
+                </div>
+                <p class="infobox_intro">@dinner.dinner_time.format("dd/MM-yyyy") kl @dinner.dinner_time.format("HH:mm")</p>
+                <a href="@routes.DinnerController.show(dinner.id)"><h3 class="infobox_heading">@dinner.name</h3></a>
+                <p class="infobox_paragraph">@dinner.description</p>
+                <p class="infobox_paragraph">Bestil inden @dinner.order_latest_time.format("dd/MM-yyyy") kl  @dinner.order_latest_time.format("HH:mm") fra <a target="_blank" href="@dinner.restaurant_link">@dinner.restaurant_name</a></p>
             </div>
     	}
     } else {
         <div class="hero-unit">
             <h1>Ingen bestillinger</h1>
             <p>Der er pt ingen bestillinger åbne. Er du sulten så opret en nu!</p>
+            <a class="btn btn-primary" href="@routes.DinnerController.create">Ny bestilling</a>
         </div>
     }
     

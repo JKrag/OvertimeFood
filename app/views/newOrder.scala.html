@@ -7,7 +7,7 @@
    		@helper.inputText(orderForm("name"), '_label -> "Dit navn", 'autofocus -> "autofocus")
         @helper.inputText(orderForm("food_name"), '_label -> "Mad navn/nr") 
         @helper.inputText(orderForm("comment"), '_label -> "Kommentar") 
-        <input type='submit' value='Bestil' class='btn btn-primary'> 
-        <a href="@routes.DinnerController.show(dinner.id)" class="btn">Anuller</a>
+        <input type='submit' value='Bestil' class='btn btn-primary btn-large'> 
+        <a href="@routes.DinnerController.show(dinner.id)" class="btn btn-large">Anuller</a>
     }
 }
