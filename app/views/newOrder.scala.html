@@ -1,9 +1,15 @@
 @(dinner:Dinner, orderForm:Form[Order])
 
+@import helper._
+@import helper.FieldConstructor 
+@import helper.twitterBootstrap2._ 
+
+@implicitFieldConstructor = @{FieldConstructor(twitterBootstrapFieldConstructor.f)}
+
 @main("Ny bestilling"){
 	<h1>Ny bestilling</h1>
 
-    @helper.form(routes.OrderController.add(dinner.id), 'class -> "form-inline"){
+    @helper.form(routes.OrderController.add(dinner.id), 'class -> "form-horizontal"){
    		@helper.inputText(orderForm("name"), '_label -> "Dit navn", 'autofocus -> "autofocus")
         @helper.inputText(orderForm("food_name"), '_label -> "Mad navn/nr") 
         @helper.inputText(orderForm("comment"), '_label -> "Kommentar") 

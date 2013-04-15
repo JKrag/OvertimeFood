@@ -10,7 +10,7 @@
     
     <h1>Ny bestilling</h1>
 
-    @helper.form(routes.DinnerController.add, 'class -> "well form-horizontal") {
+    @helper.form(routes.DinnerController.add, 'class -> "form-horizontal") {
       @helper.inputText(peopleForm("dinner_date"), '_label -> "Spise dato", 'autofocus -> "autofocus", 'type -> "date")
       @helper.inputText(peopleForm("dinner_time"), '_label -> "Spise tid", 'type -> "time")
       @helper.inputText(peopleForm("order_latest_date"), '_label -> "Seneste bestillingsdato", 'type -> "date" )

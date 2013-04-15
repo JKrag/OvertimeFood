@@ -21,7 +21,7 @@
     </dl>
 
     @if(dinner.order_latest_time.after(new Date())){
-	    <a href="@routes.OrderController.create(dinner.id)" class="btn btn-primary btn-large orderbutton">Bestil mad</a>
+	    <a href="@routes.OrderController.create(dinner.id)" class="btn btn-primary btn-block btn-large orderbutton">Bestil mad</a>
     }
 
     @if(dinner.open && !orders.isEmpty){
@@ -43,5 +43,5 @@
         }
         </table>
     }
-    <a href="@routes.Application.index" class="btn btn-large">Back</a>
+    <a href="@routes.Application.index" class="btn btn-large"><i class="icon-arrow-left"></i> Back</a>
 }

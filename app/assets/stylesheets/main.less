@@ -1,15 +1,8 @@
 @import "utils/_reset.less";
 @import "utils/_layout.less";
-
-/* DESKTOP */
-@media (min-width: 980px) {
-	body{
-		padding-top: 60px;
-	}
-}
-
-.dinnericons{
-	float: right;
+@import "utils/_infobox.less";
+body {
+	padding-bottom: 20px;
 }
 .new_dinner_button {
 	margin-bottom: 20px;
@@ -19,10 +12,7 @@
 	display: block;
 	margin: 20px auto 30px auto;
 	max-width: 300px;
-}
-
-.dinnerbox {
-	clear: both;
+	font-size: 2em;
 }
 
 .page_heading1 {
@@ -36,8 +26,11 @@
 }
 
 .dl-horizontal {
-	width: 440px;
+	width: 400px;
 	margin: 0 auto;
+	border: 1px solid #ddd;
+	padding: 10px;
+	background-color: #f5f5f5;	
 }
 
 .dl-horizontal dd, .dl-horizontal dt {
@@ -46,48 +39,19 @@
 }
 
 .dl-horizontal dt {
-	width: 200px
+	width: 160px
 }
 
 .dl-horizontal dd {
-	margin-left: 220px
+	margin-left: 180px
 }
 
-/* INFOBOX START */
-.infobox {
-	position: relative;
-	font-size: 2em;
-	clear: both;
-	padding: 1em;
-	margin-bottom: 20px;
-	border: 1px solid lightgrey;
+/* DESKTOP */
+@media (min-width: 980px) {
+	body{
+		padding-top: 60px;
+	}
 }
-
-.infobox_intro {
-	text-align: center;
-	font-size: 0.8em;
-}
-
-.infobox_heading {
-	font-size: 1.5em;
-	line-height: 1em;
-	margin-bottom: 0.5em;
-	text-align: center;
-}
-
-.infobox_paragraph {
-	font-size: 1em;
-	line-height: 1em;
-	text-align: center;
-}
-
-.infobox_buttons {
-	position: absolute;
-	top: 10px;
-	right: 10px;
-}
-/* INFOBOX END*/
-
 /* PORTRAIT TABLETS */
 @media (min-width: 768px) and (max-width: 979px) {
 	
@@ -100,22 +64,16 @@
 }
 /* PHONES */
 @media (max-width: 479px) {
-	.infobox {
-		font-size: 1.5em;
-	}
 	.page_heading1 {
-		text-align: center;
-		font-size: 2em;
+		font-size: 2.5em;
 	}
 
 	.page_description {
-		text-align: center;
 		font-size: 1.5em;
 	}
 
 	.dl-horizontal {
-		width: 340px;
-		margin: 0 auto;
+		width: 320px;
 	}
 
 	.dl-horizontal dd, .dl-horizontal dt {
@@ -124,13 +82,18 @@
 	}
 
 	.dl-horizontal dt {
-		width: 150px
+		width: 130px
 	}
 
 	.dl-horizontal dd {
-		margin-left: 160px
+		margin-left: 140px
 	}
-	.orderbutton {
-		max-width: 100%;
+
+	.new_dinner_button {
+		margin-bottom: 10px;
+		float: right;
+	}
+	.navbar-fixed-top {
+		margin-bottom: 8px;
 	}
 }
