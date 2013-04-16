@@ -7,8 +7,9 @@ import mongoContext._
 import com.novus.salat.annotations._
 import com.novus.salat.dao._
 import com.mongodb.casbah.Imports._
-import se.radley.plugin.salat._
 import java.util.Date
+import se.radley.plugin.salat._
+import se.radley.plugin.salat.Binders._
 
 case class Dinner(
   @Key("_id") id: ObjectId,
@@ -22,7 +23,7 @@ case class Dinner(
 )
 
 object Dinners extends ModelCompanion[Dinner, ObjectId] {
-  val collection = MongoConnection()("food")("Dinners")
-  val dao = new SalatDAO[Dinner, ObjectId](collection = collection) {}
+  def collection = mongoCollection("dinners")
+  val dao = new SalatDAO[Dinner, ObjectId](collection) {}
   def all = collection.map(grater[Dinner].asObject(_)).toList
 } 
