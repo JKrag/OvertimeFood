@@ -16,7 +16,7 @@
                 <p class="infobox_intro">@dinner.dinner_time.format("dd/MM-yyyy") kl @dinner.dinner_time.format("HH:mm")</p>
                 <a href="@routes.DinnerController.show(dinner.id)"><h3 class="infobox_heading">@dinner.name</h3></a>
                 <p class="infobox_paragraph">@dinner.description</p>
-                <p class="infobox_paragraph">Bestil inden @dinner.order_latest_time.format("dd/MM-yyyy") kl  @dinner.order_latest_time.format("HH:mm") fra <a target="_blank" href="@dinner.restaurant_link">@dinner.restaurant_name</a></p>
+                <p class="infobox_paragraph">Bestil inden @dinner.order_latest_time.format("dd/MM-yyyy") kl  @dinner.order_latest_time.format("HH:mm") fra @dinner.restaurant_name</p>
             </div>
     	}
     } else {
