@@ -25,7 +25,8 @@
     }
 
     @if(dinner.open && !orders.isEmpty){
-        <table class="table table-bordered table-striped responsive-utilities">
+        <p class="ordertable_num_orders">@orders.size orders</p>
+        <table id="ordertable" class="table table-bordered table-striped responsive-utilities">
             <tr>
                 <th>Navn</th>
                 <th>Mad navn/nr</th>
@@ -43,5 +44,6 @@
         }
         </table>
     }
+    <label class="checkbox"><input id="ordermode" type="checkbox"> Order mode </label>
     <a href="@routes.Application.index" class="btn btn-large"><i class="icon-arrow-left"></i> Back</a>
 }
