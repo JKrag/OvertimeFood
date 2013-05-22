@@ -1,0 +1,32 @@
+@(dinners: List[Dinner])
+
+@import java.util.Date
+
+@main("Admin :: Dinner") {
+    
+    <h1>Admininstration</h1>
+    <a class="btn btn-primary btn-large new_dinner_button" href="@routes.DinnerController.create"><i class="icon-plus icon-white"></i> Ny bestilling</a>
+
+    @if(dinners.size > 0) {
+        <table class="table table-bordered table-striped responsive-utilities">
+            <tr>
+                <th>Navn</th>
+                <th>Beskrivelse</th>
+                <th>Spisetid</th>
+                <th>Bestil inden</th>
+                <th>Restaurant</th>
+                <th></th>
+            </tr>
+            @dinners.map { dinner =>
+                <tr>
+                    <td>@dinner.name</td>
+                    <td>@dinner.description</td>
+                    <td>@dinner.dinner_time.format("dd/MM-yyyy") kl @dinner.dinner_time.format("HH:mm")</td>
+                    <td>@dinner.order_latest_time.format("dd/MM-yyyy") kl @dinner.order_latest_time.format("HH:mm")</td>
+                    <td>@dinner.restaurant_name</td>
+                    <td><a href="@routes.DinnerController.edit(dinner.id)" class="btn" ><i class="icon-edit"></i></a>
+                        <a href="@routes.DinnerController.delete(dinner.id)" class="btn"><i class="icon-remove"></i></a></td>
+                </tr>
+            }            
+    } 
+}

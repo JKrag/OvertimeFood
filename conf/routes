@@ -4,6 +4,7 @@
 
 # Home page
 GET     /                           controllers.Application.index
+GET     /admin                      controllers.Application.admin
 GET		/dinner/show/:id			controllers.DinnerController.show(id:ObjectId)
 GET		/dinner/new					controllers.DinnerController.create
 GET		/dinner/add					controllers.DinnerController.add

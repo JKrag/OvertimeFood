@@ -44,7 +44,7 @@ object DinnerController extends Controller {
     	errors => BadRequest(views.html.newDinner(errors)),
     	dinner => {
       		Dinners.insert(dinner)
-      		Redirect(routes.Application.index)
+      		Redirect(routes.Application.admin)
     	}
 		)
 	}
@@ -52,7 +52,7 @@ object DinnerController extends Controller {
   // handle delete button action
   def delete(id:ObjectId) = Action { implicit request =>
     Dinners.remove(MongoDBObject("_id" -> id));
-    Redirect(routes.Application.index)
+    Redirect(routes.Application.admin)
   }
 
   // show edit form
@@ -68,11 +68,11 @@ object DinnerController extends Controller {
       errors => BadRequest(views.html.editDinner(id, errors)),
       dinner => {
         Dinners.save(dinner.copy(id = id))
-        Redirect(routes.DinnerController.show(id))
+        Redirect(routes.Application.admin)
       }
     )
   }
-
+  
   def show(id:ObjectId) = Action { implicit request =>
     Dinners.findOneById(id).map { dinner =>
       Ok (views.html.showDinner(dinner, Orders.findByDinner(id)))  

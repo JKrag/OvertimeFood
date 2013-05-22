@@ -1,8 +1,13 @@
 @import "utils/_reset.less";
 @import "utils/_layout.less";
 @import "utils/_infobox.less";
+@import "utils/_ordermode.less";
 body {
 	padding-bottom: 20px;
+}
+.ordertable_num_orders{
+	font-weight: bold;
+	font-size: 1.2em;
 }
 .new_dinner_button {
 	margin-bottom: 20px;
@@ -18,16 +23,18 @@ body {
 .page_heading1 {
 	text-align: center;
 	font-size: 4em;
+	line-height: 1em;
 }
 
 .page_description {
 	text-align: center;
 	font-size: 2em;
+	line-height: 2em;
 }
 
 .dl-horizontal {
 	width: 400px;
-	margin: 0 auto;
+	margin: 20px auto 40px auto;
 	border: 1px solid #ddd;
 	padding: 10px;
 	background-color: #f5f5f5;	
@@ -70,6 +77,7 @@ body {
 
 	.page_description {
 		font-size: 1.5em;
+		line-height: 1.5em;
 	}
 
 	.dl-horizontal {

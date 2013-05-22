@@ -1,0 +1,14 @@
+@order_even: 	#33CC00;
+@order_odd: 	#33FF00;
+@order_hover: 	#CCFF66;
+
+.ordered td {
+	background-color: @order_even;
+}
+.table tbody tr.ordered:hover td{
+	background-color: #33FF00;
+}
+.table-striped tbody tr.ordered:nth-child(odd) td
+{
+	background-color: #33FF00;
+}
