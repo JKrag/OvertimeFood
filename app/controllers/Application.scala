@@ -14,6 +14,15 @@ object Application extends Controller {
   
   def index = Action {
     val dinners = Dinners.all
-    Ok(views.html.index(dinners))
+    if(dinners.length == 1){
+		Redirect(routes.DinnerController.show(dinners(0).id))
+	} else {
+		Ok(views.html.index(dinners))
+	}
+  }
+
+  def admin = Action {
+    val dinners = Dinners.all
+    Ok(views.html.dinnerAdmin(dinners))
   }
 }
